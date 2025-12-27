@@ -2,6 +2,7 @@ import "dotenv/config";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import express from "express";
+import { ClientRouter } from "./routes";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,6 +29,7 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api", ClientRouter)
 
 
 app.listen(port, () => {
